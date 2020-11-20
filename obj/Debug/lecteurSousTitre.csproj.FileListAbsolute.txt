@@ -1,0 +1,14 @@
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\bin\Debug\lecteurSousTitre.exe.config
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\bin\Debug\lecteurSousTitre.exe
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\bin\Debug\lecteurSousTitre.pdb
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\lecteurSousTitre.csprojAssemblyReference.cache
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\MainWindow.g.cs
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\App.g.cs
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\lecteurSousTitre_MarkupCompile.cache
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\lecteurSousTitre_MarkupCompile.lref
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\MainWindow.baml
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\lecteurSousTitre.g.resources
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\lecteurSousTitre.Properties.Resources.resources
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\lecteurSousTitre.csproj.GenerateResource.cache
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\lecteurSousTitre.exe
+C:\Users\anais\Documents\annee2\archilogi\lecteurSousTitre\obj\Debug\lecteurSousTitre.pdb

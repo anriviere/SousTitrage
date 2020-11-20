@@ -1,0 +1,123 @@
+﻿<Window x:Class="lecteurSousTitre.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lecteurSousTitre"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10,0,0.333,2.667">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="275*"/>
+            <ColumnDefinition Width="518*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="lblStatus" Content="Not playing..." HorizontalContentAlignment="Center" Margin="-38,388,48.333,-9" />
+        <TextBox x:Name="MediaPathTextBox" VerticalAlignment="Top" Height="20" Margin="0,10,0.333,388" />
+        <TextBox x:Name="SrtTextBox" VerticalAlignment="Top" Height="20" Margin="0,35,511.333,363" Grid.ColumnSpan="2" />
+
+        <TextBox x:Name="PauseTextBox" Height="20" Margin="387.667,285,65.333,113" Grid.Column="1" />
+
+        <Button x:Name="ChoixStr" Margin="49,380,691,-322" Content="Choix Sous-Titre"/>
+        <!--<Button x:Name="MonPremierBouton" Margin="134,379,604,-322" Content="Choix Vidéo" Click="ChoixVideoClick"/>-->
+        <!--<Button Name="btnPlay"  Margin="239,322,393.333,-282" Grid.ColumnSpan="2" Click="PauseButton_Click" >Play</Button>-->
+        <Button Height="23" HorizontalAlignment="Left" Margin="10,157,0,0"
+
+            Name="PauseButton" VerticalAlignment="Top" Width="75"
+
+            Click="PauseButton_Click">
+
+            Pause
+        </Button>
+
+        <Button Height="22" HorizontalAlignment="Left" Margin="10,185,0,0"
+
+            Name="PlayButton" VerticalAlignment="Top" Width="75"
+
+            Click="PlayButton_Click">
+
+            Play
+        </Button>
+
+        <Button Height="23" HorizontalAlignment="Left" Margin="10,129,0,0"
+
+            Name="StopButton" VerticalAlignment="Top" Width="75"
+
+            Click="StopButton_Click">
+
+            Stop
+        </Button>
+
+        <Button Height="20" HorizontalAlignment="Right" Margin="0,10,398.333,0" Name="ChoixVideo"
+
+            VerticalAlignment="Top" Width="94" Click="ChoixVideo_Click" Grid.Column="1">
+
+            Choix Vidéo
+
+        </Button>
+
+        <Button Height="20" HorizontalAlignment="Right" Margin="0,35,398.333,0" Name="ChoixSrt"
+
+            VerticalAlignment="Top" Width="94" Click="ChoixSrt_Click" Grid.Column="1">
+
+            Choix Sous-Titre
+
+        </Button>
+
+        <Button Height="20" HorizontalAlignment="Right" Margin="0,20,290.333,0" Name="ValiderFichier"
+
+            VerticalAlignment="Top" Width="94" Click="ValiderFichier_Click" Grid.Column="1">
+
+            Valider Fichier
+
+        </Button>
+
+        <Button Height="20" HorizontalAlignment="Right" Margin="0,303,222.333,0" Name="augmenter"
+
+             VerticalAlignment="Top" Width="39" Click="augmenter_Click">
+
+            +
+
+        </Button>
+
+        <Button Height="20" HorizontalAlignment="Right" Margin="0,278,222.333,0" Name="diminuer"
+
+            VerticalAlignment="Top" Width="39" Click="diminuer_Click">
+
+            -
+
+        </Button>
+
+
+        <MediaElement Name="VideoControl" VerticalAlignment="Top" LoadedBehavior="Manual"  Margin="166,95,163.333,0" Grid.ColumnSpan="2" Height="275" MediaOpened="Element_MediaOpened" ></MediaElement>
+
+
+
+        <!--<Label x:Name="soustitre" Margin="243,331,209.333,32" Grid.ColumnSpan="2"></Label>-->
+        <TextBlock x:Name="soustitre"  VerticalAlignment="Top" HorizontalAlignment="Center" Margin="156,375,149.333,0"
+                FontFamily="Arial"
+                FontSize="8"
+                FontWeight="UltraBold" Height="43" Width="478" Grid.ColumnSpan="2">bb</TextBlock>
+
+
+        <Label x:Name="Pla" Margin="387.667,61,28.333,324" Grid.Column="1"  >0</Label>
+        <Label x:Name="Pla2" Margin="387.667,100,28.333,286" Grid.Column="1" >0</Label>
+
+        <Label x:Name="AvanceRapide" Margin="387.667,305,28.333,81" Grid.Column="1" >0</Label>
+
+        <TextBlock Foreground="Black" VerticalAlignment="Top" Margin="0,354,9.333,48"  >Volume</TextBlock>
+        <Slider Name="volumeSlider" VerticalAlignment="Top" ValueChanged="ChangeMediaVolume" 
+       Minimum="0" Maximum="1" Value="0.5" Width="70" Margin="10,370,191.333,30"/>
+
+        <!--<TextBlock Foreground="White" Margin="5"  VerticalAlignment="Center">Seek To</TextBlock>-->
+        <Slider Name="timelineSlider" Margin="367.667,380,74.333,5" ValueChanged="SeekToMediaPosition" Width="70" Grid.Column="1"/>
+
+
+    </Grid>
+
+    <!--<StackPanel x:Name="MonPremierStackPanel">
+        <Label x:Name="MonPremierLabel">Ceci est un label</Label>
+        
+        <Button x:Name="MonPremierBouton" Click="MonPremierBouton_Click">Cliquez ici !</Button>
+    </StackPanel>-->
+</Window>
