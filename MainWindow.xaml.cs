@@ -159,21 +159,5 @@ namespace lecteurSousTitre
         }
 
 
-        private void Element_MediaOpened(object sender, EventArgs e)
-        {
-            timelineSlider.Maximum = VideoControl.NaturalDuration.TimeSpan.TotalMilliseconds;
-        }
-
-        // Jump to different parts of the media (seek to).
-        private void SeekToMediaPosition(object sender, RoutedPropertyChangedEventArgs<double> args)
-        {
-            int SliderValue = (int)timelineSlider.Value;
-
-            // Overloaded constructor takes the arguments days, hours, minutes, seconds, milliseconds.
-            // Create a TimeSpan with miliseconds equal to the slider value.
-            TimeSpan ts = new TimeSpan(0, 0, 0, 0, SliderValue);
-            VideoControl.Position = ts;
-            AvanceRapide.Content = "1";
-        }
     }
 }

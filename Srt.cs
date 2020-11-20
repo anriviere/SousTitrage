@@ -25,23 +25,16 @@ namespace lecteurSousTitre
         
         public Srt(string path) 
         {
-
-
-
-            string mydocpath =
-                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             using (StreamReader sr = new StreamReader(path))
             {
                 string l = "";
                 int nLigne = 1;
                 while ((l = sr.ReadLine()) != null)
                 {
-                    //int nLigne = 1;
-
+                    
                     if (l.Length == 0)
                     {
                         nLigne = 0;
-
                     }
 
                     if (nLigne == 2)
@@ -54,11 +47,9 @@ namespace lecteurSousTitre
                         fin.Add(temps[2]);
                     }
 
-
                     if (nLigne == 3)
                     {
-
-                        //add ligne a liste
+                       //add ligne a liste
                         List<string> ligne = new List<string>();
                         ligne.Add(l);
                         texte.Add(ligne);
@@ -70,25 +61,14 @@ namespace lecteurSousTitre
                         int i = texte.Count;
 
                         texte[i - 1].Add(l);
-                        //string newValeur = texte[i - 1] + "&" + l;
-
-                        //texte[i - 1] = newValeur;
+                        
                     }
-                    //ajouter à texte
-
-
-
-
+                   
                     nLigne++;
                     //Console.WriteLine(l);
                 }
 
             }
-
-
-
-
-            //lecture du fichier
 
         }
 
@@ -100,123 +80,43 @@ namespace lecteurSousTitre
             
             while (i < l)
             {
-     
+                //Attend le début du sous-titre
                 Task attente = AttenteEntreSousTitre(i);
-
-                
-
-                //while (!attente.IsCompleted)
-                //{
-                    
-
-                //}
-
                 await attente;
 
-                if (EnPause.Text == "0")
-                {
-                    Task pause = Pause(EnPause);
-                    await pause;
+                //Mise en pause de la vidéo
+                Task pause = ReprisePause(EnPause, video, debut, i);
+                await pause;
 
-                    
-                    TimeSpan RattrapeVideo = TransformHeure(debut[i]) - video.Position;
-                    debug.Content = TransformHeure(debut[i]).ToString();
-                    debug2.Content = video.Position.ToString();
-                    await Task.Delay(RattrapeVideo);
-                    
-
-                }
+                //Si on arrete la vidéo (définitivement = retour au début)
                 if (EnPause.Text == "2")
                 {
                     Task stop = Pause(EnPause);
                     await stop;
-
-
                     count = new TimeSpan(0);
                     i = 0;
                     continue;
-
-
                 }
 
-
-                // blbl = true
-                // récupéerer bon i
-
-                //remettre str au bon moment
-
-                AfficheStr(texte[i], sousTitre);
-
-                //if (avanceRapide.Content == "1")
-                //{
-
-                //    int j = 0;
-
-                //    TimeSpan where = video.Position;
-                //    debug.Content = where;
-                //    while (where > TransformHeure(debut[j]))
-                //    {
-                //        j++;
-                //        avanceRapide.Content = "3";
-                //    }
-
-                //    if (video.Position > TransformHeure(fin[j - 1]))
-                //    {
-                //        i = j - 1;
-                //        count = video.Position;
-                //        avanceRapide.Content = "0";
-                //    }
-
-                //    if (video.Position < TransformHeure(fin[j - 2]))
-                //    {
-                //        i = j - 2;
-                //        count = video.Position;
-                //        avanceRapide.Content = "0";
-                //        continue;
-                //    }
-
-
-                //}
-
-
-
-
-
-
+                //affiche le sous-titre
+                AfficheStr(texte[i], sousTitre);  
                 
+                //Calcule le temps d'affichage du sous-titre
                 Task TempsSrt = TempsAffichageStr(i);
-
                 await TempsSrt;
 
-                if (EnPause.Text == "0")
-                {
-                    Task pause1 = Pause(EnPause);
-                    await pause1;
+                //Mise en pause de la vidéo
+                Task pause2 = ReprisePause(EnPause, video, fin, i);
+                await pause2;
 
-
-                    //if (video.Position < TransformHeure(fin[i]))
-                    //{
-
-
-                    TimeSpan RattrapeVideo2 = TransformHeure(fin[i]) - video.Position;
-                    debug.Content = TransformHeure(fin[i]).ToString();
-                    debug2.Content = video.Position.ToString();
-                    await Task.Delay(RattrapeVideo2);
-                    //}
-
-                }
-
+                //Si on arrete la vidéo (définitivement = retour au début)
                 if (EnPause.Text == "2")
                 {
                     Task stop = Pause(EnPause);
                     await stop;
-
-
                     count = new TimeSpan(0);
                     i = 0;
                     continue;
-
-
                 }
                 sousTitre.Text = " ";
 
@@ -229,6 +129,24 @@ namespace lecteurSousTitre
 
         }
 
+        //Calcule le temps de décalage entre la vidéo et les sous-titre après une pause, et les réajuste
+        public async Task ReprisePause(TextBox EnPause, MediaElement video, List<string> position, int i)
+        {
+            if (EnPause.Text == "0")
+            {
+                Task pause1 = Pause(EnPause);
+                await pause1;
+
+                TimeSpan RattrapeVideo2 = TransformHeure(position[i]) - video.Position;
+                //debug.Content = TransformHeure(fin[i]).ToString();
+                //debug2.Content = video.Position.ToString();
+                await Task.Delay(RattrapeVideo2);
+
+            }
+        }
+
+
+        //affiche les sous-titres
         public void AfficheStr(List<string> str, TextBlock sousTitre)
         {
             
@@ -238,26 +156,22 @@ namespace lecteurSousTitre
                 sousTitre.Text = sousTitre.Text + Environment.NewLine + str[1];
             }
 
-            
         }
         
+        //Met en pause les sous-titre jusqu'a la reprise
         public async Task Pause(TextBox EnPause)
         {
             if (EnPause.Text == "0" || EnPause.Text == "2")
             {
-
                 await Task.Delay(1);
                 Task u = Pause(EnPause);
                 await u;
-
-               
-            }
-
-           
+  
+            }           
         }
         
 
-     
+        //attente entre chaque sous-titre
         public async Task AttenteEntreSousTitre(int i)
         {
             TimeSpan heure = this.TransformHeure(debut[i]);
@@ -266,6 +180,8 @@ namespace lecteurSousTitre
             count = heure;
         }
 
+
+        //temps d'affichage d'un sous-titre
         public async Task TempsAffichageStr(int i)
         {
             TimeSpan heure = this.TransformHeure(fin[i]);
@@ -277,21 +193,14 @@ namespace lecteurSousTitre
         }
 
 
+        //transforme une string en TimeSpan
         public TimeSpan TransformHeure(string time)
         {
-
-
             string DateString = time.Replace(",", ".");
             DateTime DateFromString = DateTime.Parse(DateString);
-
             DateTime test = DateTime.Today;
-
             TimeSpan Intervalle = DateFromString - test;
-
-
             return Intervalle;
-
-
         }
 
        

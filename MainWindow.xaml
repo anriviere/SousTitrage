@@ -89,15 +89,15 @@
         </Button>
 
 
-        <MediaElement Name="VideoControl" VerticalAlignment="Top" LoadedBehavior="Manual"  Margin="166,95,163.333,0" Grid.ColumnSpan="2" Height="275" MediaOpened="Element_MediaOpened" ></MediaElement>
+        <MediaElement Name="VideoControl" VerticalAlignment="Top" LoadedBehavior="Manual"  Margin="166,95,163.333,0" Grid.ColumnSpan="2" Height="275"  ></MediaElement>
 
 
 
-        <!--<Label x:Name="soustitre" Margin="243,331,209.333,32" Grid.ColumnSpan="2"></Label>-->
-        <TextBlock x:Name="soustitre"  VerticalAlignment="Top" HorizontalAlignment="Center" Margin="156,375,149.333,0"
+       
+        <TextBlock x:Name="soustitre"  VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center"  Margin="156,375,149.333,0"
                 FontFamily="Arial"
                 FontSize="8"
-                FontWeight="UltraBold" Height="43" Width="478" Grid.ColumnSpan="2">bb</TextBlock>
+                FontWeight="UltraBold" Height="43" Width="478" Grid.ColumnSpan="2"></TextBlock>
 
 
         <Label x:Name="Pla" Margin="387.667,61,28.333,324" Grid.Column="1"  >0</Label>
@@ -109,15 +109,11 @@
         <Slider Name="volumeSlider" VerticalAlignment="Top" ValueChanged="ChangeMediaVolume" 
        Minimum="0" Maximum="1" Value="0.5" Width="70" Margin="10,370,191.333,30"/>
 
-        <!--<TextBlock Foreground="White" Margin="5"  VerticalAlignment="Center">Seek To</TextBlock>-->
-        <Slider Name="timelineSlider" Margin="367.667,380,74.333,5" ValueChanged="SeekToMediaPosition" Width="70" Grid.Column="1"/>
+        
+       
 
 
     </Grid>
 
-    <!--<StackPanel x:Name="MonPremierStackPanel">
-        <Label x:Name="MonPremierLabel">Ceci est un label</Label>
-        
-        <Button x:Name="MonPremierBouton" Click="MonPremierBouton_Click">Cliquez ici !</Button>
-    </StackPanel>-->
+   
 </Window>
